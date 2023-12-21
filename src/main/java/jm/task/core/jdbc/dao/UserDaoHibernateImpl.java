@@ -21,7 +21,7 @@ public class UserDaoHibernateImpl implements UserDao {
                               """;
     private static final String DROPUSERSTABLE = "DROP TABLE IF EXISTS user;";
     private static final String CLEANUSERSTABLE = "DELETE from User;";
-    private static final String GETALLUSERS = "SELECT u FROM User u";
+    private static final String GETALLUSERS = "SELECT u from User u";
     public UserDaoHibernateImpl() {
     }
 
@@ -78,7 +78,7 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public List<User> getAllUsers() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(GETALLUSERS, User.class).getResultList();
+            return session.createQuery(GETALLUSERS, User.class).list();
         } catch (HibernateException e) {
             throw new RuntimeException(e);
         }
